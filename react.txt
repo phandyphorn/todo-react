@@ -1,0 +1,119 @@
+- npm create vite@latest react-todo -- --template react (jsx)
+- npm create vite@latest react-todo -- --template react-ts (tsx)
+
+- install steam package: npm install @laravel/stream-react (https://laravel.com/docs/12.x/responses#view-responses)
+
+- cd  react-todo
+- npm install
+- npm run dev
+
+- React is an open-source, component-based Javascript library maintained by Meta (Facebook).
+It is primarily used to build fast, interactive, and scallable user interfaces (efficiently grow in complexity and if new feature come, without require full rewrite code) for web.
+
+- We use React because:
++ Reusability = Build blocks once and reuse them across app.
++ Performance = Instead of update the entire webpage, React only
+update the specific parts of the screen that change that make apps fasts.
++ Declarative UI and Cross-platform (mobile app use react native).
+
+- Core features:
+    + Components = The building blocks of React applications.
+    Each component is a self-contained, independent piece of code that defineds
+    such as Btton, navigation bar, or form.
+    + Virtual DOM = A lightweight, in memory copy of the actual brownser DOM. 
+    When state changes, only applies to that DOM which updates needed that making
+    UI updates fast and efficient.
+    + JSX = stands for JavaScript XML. It's a syntax extension for JavaScript
+    that allows you to write HTML-like code within your JavaScript code.
+    + Props and State = The two wasy data is managed in React are Props and State.
+        * Props = short for properties. These are used to pass data down from parent 
+        components to children components, making them dynamic.
+        * State = Internal data within a component that changes over time, usually in response to user actions.
+    + Hooks = useState, useEffect are special Javascript functions that allow us to
+    to use state and manage side effect in function components.
+    + Unidirectional Data Flow = Data in React flows in single direction from parent to children, so easy
+    to debug. 
+
+- Hooks introduced from React 16.8, that make component easy to share stateful logic between component. 
+Common hooks are:
+    + useState = A function that allows us to add state to a function component.
+    + useEffect = A function that allows us to perform side effect in a function component.
+    (side effect is any operation that images somethings outside the scope of current function component.)
+    ex: Fetching data from external API, setting up timers, ...
+
+    + useContext = A function that allows us to access the context of a component (Share global accross component without passing props manually)
+    + useReducer = A function that allows us to manage complex state in a function component. (Manage complex component state logic into a single function)
+    + useCallback = A function that allows us to memoize functions. 
+    + useMemo = A function that allows us to memoize values. 
+    + useRef = A function that allows us to create a reference to an element. (useRef and then value .current.focus() make use to auto maps on spedific dom)
+
+- Difference between useEffect and useLayoutEffect:
+    + useEffect = Run asynchromously after the browser paintes the screen. suitable for data fetching
+    and subscription and most side effects.
+    + useLayoutEffect = Run synchronously after DOM mutate (changes) but before browser paints the screen. 
+    use it whn we need to read/write DOM layout to avoid visual flicker.
+
+- useMemo use to memorizes the result of an expensive computation, only recalulating When
+its depencencies change. We use it to avoid recomputing heavy calucations on every render.
+
+- Difference between useCallback and useMemo:
+    + useMemo = use to memorizes the result of an expensive computation, only recalulating when
+    its depencencies change. We use it to avoid recomputing values on every render.
+    + useCallback = use to memorizes the callback function, only recalulating when
+    its depencencies change. We use it to avoid recomputing functions on every render.
+
+- React.Memo is a higher order component that can be used to memorize a component.
+    It prevents the component from re-rendering if its props have not changed.
+
+- Context providers a way to share value (tehm,auth, locale) accross the component tree
+without passing props at every level.
+
+- Keys are unique identifiers on list items that help React identify which items changed. 
+
+- Code slipting breaks you bundle into smaller chuck loaded on demand, improving initial load
+time, in React, use React.lazy() to dynamically import a component and wrap in
+with to show a loading state while the chunk loads.
+
+- React.lazy() = defer loading a component's code until it is rendered for the first time.
+example: 
+const OtherComponent = lazy(() => import('./OtherComponent'));
+
+- JSX is a syntax extension that lets you write HTML-like markup inside JavaScript.
+- TSX is a syntax extension that lets you write HTML-like markup inside TypeScript.
+
+- Difference betweenControlled and Uncontrolled components:
+    + Controlled Component (useState) = managed by React state, every keystroke updates states and input always reflects that state.
+    + Uncontrolled Component (useRef) = managed by DOM itself. Use ref to get the value when needed.
+
+- higher-Order Component (HOC) is a function that takes a component and returns a new component with added
+behaviours.They enable cross-cuttin concerns like authentication guards, logging, or 
+analytics without modifying the origin compnents.
+
+- Class components had lifecycle methods:
++ componentDidMount,
++ componentDidUpdate,
++ componentWillUnmount
+
+but with hooks, useEffect cover all these three above. 
+
+- 
+
+- Introduce to myself
+My name Phandy Phorn, I graduated in 2025 from AUE and I was a student at PNC.
+Currently, I am a web frontend developer who working on React and Next.js and experience around 3 years, but not only focus on react, I collarborated with team to work on some project using Java spring betweenControlled
+and mobile on Flutter. Also I research on AI and build application with AI tools. I also an intern in a software company use vue and laravel also. I am very intertested in 
+working with new technologies and always open to learning new things to match my future journey.
+
+- React vs Next.js
+
+| Feature | React | Next.js |
+| --- | --- | --- |
+| Routing | Client-side only | Built-in (filesystem-based) |
+| Data Fetching | Client-side (useEffect, etc.) | SSR, SSG, ISR, CSR |
+| API Routes | Not built-in | Yes (serverless functions) |
+| Rendering | CSR primarily | SSR, SSG, ISR, CSR |
+| Image Optimization | Manual | Built-in |
+| Code Splitting | Manual | Automatic |
+| SEO | Requires extra work | Good (SSR/SSG) |
+| Learning Curve | Easier | Moderate |
+
