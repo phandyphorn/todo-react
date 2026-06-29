@@ -14,13 +14,15 @@ import { Navigation } from "./components/Navigation";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { TodoPage } from "./pages/TodoPage";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <QueryClientProvider client={queryClient}>
-      <Router>
+        <AuthProvider>
+          <Router>
             <Navigation />
             <Routes>
               <Route path="/login" element={<LoginPage />} />
@@ -36,6 +38,7 @@ function App() {
               <Route path="/" element={<Navigate to="/todos" />} />
             </Routes>
           </Router>
+        </AuthProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

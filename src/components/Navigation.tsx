@@ -1,15 +1,14 @@
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogout } from "../hooks/useAuth";
+import { useAuthContext } from "../contexts/AuthContext";
 
 export function Navigation() {
   const navigate = useNavigate();
-  const { mutate: logout } = useLogout();
-  const isAuthenticated = !!localStorage.getItem("authToken");
+  const { logout, isAuthenticated } = useAuthContext();
 
 
-  const handleLogout = (): void => {
-    logout(undefined);
+  const handleLogout = async (): Promise<void> => {
+    await logout();
     navigate("/login");
   };
 

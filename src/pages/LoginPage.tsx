@@ -1,39 +1,61 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
-import { Container, Box, Typography, TextField, Button, Link, Paper, Alert } from "@mui/material";
-import { useLogin } from "../hooks/useAuth";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Link,
+  Paper,
+  Alert,
+} from "@mui/material";
+import { useAuthContext } from "../contexts/AuthContext";
 
 export function LoginPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState<string | null>(null);
-  const loginMutation = useLogin();
+  const [isPending, setIsPending] = useState(false);
+  const { login } = useAuthContext();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    setIsPending(true);
 
-    loginMutation.mutate(formData, {
-      onSuccess: () => {
-        navigate("/todos");
-      },
-      onError: (err: unknown) => {
-        const axiosErr = err as { response?: { data?: { message?: string } } };
-        const errorMessage =
-          axiosErr.response?.data?.message || "Invalid credentials or server error.";
-        setError(errorMessage);
-      },
-    });
+    try {
+      await login(formData);
+      navigate("/todos");
+    } catch (err: unknown) {
+      const axiosErr = err as { response?: { data?: { message?: string } } };
+      const errorMessage =
+        axiosErr.response?.data?.message ||
+        "Invalid credentials or server error.";
+      setError(errorMessage);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
     <Container maxWidth="xs">
-      <Box sx={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Paper elevation={3} sx={{ padding: 4, width: "100%", borderRadius: 2 }}>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Paper
+          elevation={3}
+          sx={{ padding: 4, width: "100%", borderRadius: 2 }}
+        >
           <Typography component="h1" variant="h5" align="center" gutterBottom>
             Sign In
           </Typography>
@@ -71,10 +93,10 @@ export function LoginPage() {
               type="submit"
               fullWidth
               variant="contained"
-              disabled={loginMutation.isPending}
+              disabled={isPending}
               sx={{ mt: 3, mb: 2, py: 1.2 }}
             >
-              {loginMutation.isPending ? "Signing in…" : "Sign In"}
+              {isPending ? "Signing in…" : "Sign In"}
             </Button>
             <Box sx={{ textAlign: "center" }}>
               <Link component={RouterLink} to="/register" variant="body2">
