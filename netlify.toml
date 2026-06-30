@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Needed for client-side routing (React Router) so refreshing
+# on a deep link doesn't 404
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
