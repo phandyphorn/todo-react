@@ -1,0 +1,8 @@
+using netlify for host our react app because it free and easy to use and define, dev, stag and prod.
+
+- we need netlify.toml file for configuration.
+- we need .env for environment variables.
+1. Connect with github
+2. choose build command npm run build and publish build folder is dist
+3. make sure for redirect from /* to /index.html
+4. run npm run build
