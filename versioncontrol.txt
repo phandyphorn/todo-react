@@ -1,0 +1,63 @@
+- Check github (non fast froward is recomment for team to avoid losting history.)
+- git pull = git fetch + git merge
+ex: git pull;
+Before:  local:  A → B → C (your commits)
+         remote: A → B → D (someone else's commits)
+
+After git pull:  A → B → C → M
+                       \     /
+                        D →
+
+
+- git pull --rebase = git fetch + git rebase.
+ex: git pull --rebase:
+Before:  local:  A → B → C (your commits)
+         remote: A → B → D (someone else's commits)
+
+After git pull --rebase:  A → B → D → C'
+
+
+- If currently working on aa branch, and wanna pull another pr just merged into dev. 
+I need git pull --rebase origin dev.
+
+- Squash in Git = refer to combine multiple commits into a single commit.
+
+- Git checkout pr
+- Git cherry picking: allow us to apply a specific commit from on branch to another, without merge the whole branch.
+
+
+- PR = Pull Request
+- Branch
+
+- Github CLI is a powerful tool for automating GitHub-related tasks directly from your terminal (command line).
+
+- We use git reflog = to recover lost commits.
+
+- Between git log --oneling and git reflog:
++ git log --oneling = show all commits name.
++ git reflog = show branch and commits name
+
++ git reset --hard + code of commit = reset to that specific commit.
+
+
+=== When we start a new once project:
+- read README.md
+- git log --oneline -20        # recent activity/commit style
+- git branch -a                # what branches exist
+
+
+=== Check app/, routes/, resources/, config/
+- .env.example, .env
+- Check docker-compose.yml, Dockerfile
+- database/migrations
+- database/seeders
+
+
+=== Check routes/web.php, routes/api.php
+
+
+=== CI/CD = an automated software development process that 
+bridges the gap between development and operations team. (Allow developer to ship update to end-user faster).
+- CI = Continuous Integration = where developer frequently merge their code changes into central repository (Github or Gitlab).
+- CD = Continuous Delivery = The code is automatically build and tested, but human need to manual click a button to approve the final release to production.
+- CD = Continuous Deployment = The code passes all pipeline steps and is automaticaly release to user with zero manual.
