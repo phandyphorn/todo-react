@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Production Build Outputs
+/dist
+
+# Environment Variables & Secrets
+.env
+
+# IDE and Editor Settings
+.vscode/
+.idea/
+*.swp
+
+# OS Generated Files
+.DS_Store
