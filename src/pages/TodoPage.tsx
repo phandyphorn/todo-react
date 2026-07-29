@@ -12,6 +12,7 @@ import { TodoList } from "../components/TodoList";
 
 export function TodoPage() {
   const { data: todosData, isLoading } = useTodos();
+  console.log("todo: ", todosData);
   const { mutate: createTodo, isPending: isCreating } = useCreateTodo();
   const { mutate: updateTodo, isPending: isUpdating } = useUpdateTodo();
   const { mutate: deleteTodo } = useDeleteTodo();

@@ -15,6 +15,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { TodoPage } from "./pages/TodoPage";
 import { AuthProvider } from "./contexts/AuthContext";
+import DeviceMonitor from "./components/DeviceMonitor";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                 path="/todos"
                 element={
                   <ProtectedRoute>
+                    <DeviceMonitor />
                     <TodoPage />
                   </ProtectedRoute>
                 }
